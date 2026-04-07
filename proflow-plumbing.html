@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProFlow Plumbing — Abilene, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2e;
+    --blue: #1a3a5c;
+    --sky: #2196f3;
+    --sky-light: #4db6ff;
+    --white: #ffffff;
+    --off: #f4f7fb;
+    --gray: #6b7a8d;
+    --text: #1a2232;
+    --border: #dce5ef;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; font-weight: 400; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 3rem;
+    height: 68px;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 0.7rem; }
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--sky);
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem;
+  }
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1.25rem;
+    color: var(--white); letter-spacing: 0.02em;
+  }
+  .logo-text span { color: var(--sky-light); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 400; transition: color 0.2s; }
+  nav a:hover { color: var(--white); }
+  .nav-phone {
+    background: var(--sky); color: var(--white) !important;
+    padding: 0.5rem 1.2rem; border-radius: 6px;
+    font-weight: 500 !important; font-size: 0.88rem !important;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: background 0.2s !important;
+  }
+  .nav-phone:hover { background: var(--sky-light) !important; }
+
+  /* HERO */
+  .hero {
+    padding-top: 68px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding-left: 4rem; padding-right: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(33,150,243,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(33,150,243,0.15); border: 1px solid rgba(33,150,243,0.3);
+    color: var(--sky-light); padding: 0.35rem 0.9rem;
+    border-radius: 100px; font-size: 0.78rem; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeIn 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(2.8rem, 5vw, 4.5rem);
+    color: var(--white); line-height: 1.05;
+    margin-bottom: 1.2rem;
+    animation: fadeIn 0.6s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--sky-light); font-style: normal; }
+  .hero-sub {
+    color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.7;
+    max-width: 460px; margin-bottom: 2.5rem;
+    animation: fadeIn 0.6s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeIn 0.6s 0.3s ease both;
+  }
+  .btn-blue {
+    background: var(--sky); color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 8px;
+    font-family: 'Barlow', sans-serif; font-weight: 500;
+    font-size: 0.95rem; text-decoration: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-blue:hover { background: var(--sky-light); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25); color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 8px;
+    font-weight: 400; font-size: 0.95rem; text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--sky-light); color: var(--sky-light); }
+
+  .trust-row {
+    display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;
+    animation: fadeIn 0.6s 0.4s ease both;
+  }
+  .trust-item { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+  .trust-item span { font-size: 1rem; }
+
+  /* HERO CARD */
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.8s 0.2s ease both;
+  }
+  .card-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: 1.1rem;
+    color: var(--sky-light); letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .card-header::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4caf50; display: block; }
+  .service-list { list-style: none; }
+  .service-list li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+    color: rgba(255,255,255,0.85); font-size: 0.92rem;
+  }
+  .service-list li:last-child { border-bottom: none; }
+  .service-list .icon { font-size: 1rem; margin-right: 0.5rem; }
+  .service-list .avail { color: var(--sky-light); font-size: 0.78rem; letter-spacing: 0.05em; }
+  .emergency-banner {
+    background: rgba(33,150,243,0.15); border: 1px solid rgba(33,150,243,0.3);
+    border-radius: 10px; padding: 1rem 1.2rem;
+    margin-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .emergency-banner strong { color: var(--white); font-size: 0.88rem; display: block; }
+  .emergency-banner span { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* WHY US */
+  .why { background: var(--off); padding: 5rem 4rem; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem; color: var(--navy);
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .feature-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.8rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { box-shadow: 0 8px 24px rgba(13,27,46,0.08); transform: translateY(-2px); }
+  .feature-icon {
+    width: 48px; height: 48px; background: rgba(33,150,243,0.1);
+    border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;
+  }
+  .feature-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--navy); }
+  .feature-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+  /* SERVICES */
+  .services { padding: 5rem 4rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .svc-card {
+    border: 1px solid var(--border); border-radius: 12px; padding: 2rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .svc-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--sky);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-card:hover { box-shadow: 0 6px 20px rgba(13,27,46,0.07); }
+  .svc-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .svc-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--navy); }
+  .svc-card p { font-size: 0.87rem; color: var(--gray); line-height: 1.6; }
+
+  /* AREAS */
+  .areas { background: var(--off); padding: 4rem; text-align: center; }
+  .areas-list {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center; margin-top: 2rem;
+  }
+  .area-tag {
+    background: var(--white); border: 1px solid var(--border);
+    padding: 0.5rem 1.1rem; border-radius: 100px;
+    font-size: 0.88rem; color: var(--text);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 5rem 4rem; text-align: center; color: var(--white);
+  }
+  .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+  .cta-section p { color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto 2.5rem; }
+  .cta-options { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .cta-opt {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 1.5rem 2rem; text-align: left; min-width: 200px;
+    text-decoration: none; color: var(--white);
+    transition: background 0.2s;
+  }
+  .cta-opt:hover { background: rgba(255,255,255,0.13); }
+  .cta-opt-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sky-light); margin-bottom: 0.4rem; }
+  .cta-opt-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1.3rem; }
+
+  footer {
+    background: var(--navy); padding: 1.5rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; min-height: auto; gap: 2rem; }
+    .why, .services, .areas, .cta-section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">🔧</div>
+    <div class="logo-text">Pro<span>Flow</span> Plumbing</div>
+  </div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#areas">Service Areas</a></li>
+    <li><a href="#contact" class="nav-phone">📞 (325) 555-0200</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✓ Licensed & Insured — Abilene, TX</div>
+    <h1>Fast, Reliable<br><em>Plumbing</em><br>You Can Trust.</h1>
+    <p class="hero-sub">From leaky faucets to full pipe replacements — we fix it right the first time. Available 7 days a week with same-day service.</p>
+    <div class="hero-btns">
+      <a href="tel:3255550200" class="btn-blue">📞 Call Now — Free Estimate</a>
+      <a href="#services" class="btn-ghost">See Services</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><span>✓</span> No Hidden Fees</div>
+      <div class="trust-item"><span>✓</span> Same-Day Available</div>
+      <div class="trust-item"><span>✓</span> 5-Star Rated</div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="card-header">Services Available Now</div>
+    <ul class="service-list">
+      <li><span><span class="icon">💧</span>Leak Detection & Repair</span><span class="avail">Same-day</span></li>
+      <li><span><span class="icon">🚿</span>Drain Cleaning</span><span class="avail">Same-day</span></li>
+      <li><span><span class="icon">🔥</span>Water Heater Service</span><span class="avail">Same-day</span></li>
+      <li><span><span class="icon">🚽</span>Toilet Repair / Replace</span><span class="avail">Same-day</span></li>
+      <li><span><span class="icon">🏗️</span>Pipe Replacement</span><span class="avail">Scheduled</span></li>
+      <li><span><span class="icon">🏠</span>Remodel Plumbing</span><span class="avail">Scheduled</span></li>
+    </ul>
+    <div class="emergency-banner">
+      <span style="font-size:1.5rem">🚨</span>
+      <div>
+        <strong>24/7 Emergency Service</strong>
+        <span>Burst pipes, flooding? We answer day and night.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-label">Why ProFlow</div>
+  <h2>Plumbing Done Right, Every Time</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Fast Response</h3>
+      <p>We answer calls fast and offer same-day appointments for most jobs in Abilene.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Licensed & Insured</h3>
+      <p>Fully licensed Texas plumbers. Every job is guaranteed and covered.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💲</div>
+      <h3>Upfront Pricing</h3>
+      <p>You'll know the full cost before we start. No surprises, no hidden fees.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⭐</div>
+      <h3>5-Star Reputation</h3>
+      <p>Hundreds of satisfied customers across Abilene and surrounding areas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-label">What We Fix</div>
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">💧</div>
+      <h3>Leak Detection</h3>
+      <p>We locate and stop leaks fast — under slabs, inside walls, or in your yard.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌀</div>
+      <h3>Drain Cleaning</h3>
+      <p>Clogged sinks, showers, or main lines — cleared completely with pro equipment.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔥</div>
+      <h3>Water Heater</h3>
+      <p>Repair or replace tank and tankless water heaters. Same-day available.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏗️</div>
+      <h3>Pipe Replacement</h3>
+      <p>Old galvanized or burst copper? We reroute and repipe your whole home.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🚽</div>
+      <h3>Fixture Service</h3>
+      <p>Running toilets, dripping faucets, low-pressure showers — all fixed.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏠</div>
+      <h3>Remodel Plumbing</h3>
+      <p>New bathroom or kitchen? We rough-in and finish the plumbing right.</p>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="section-label">Where We Work</div>
+  <h2>Service Areas</h2>
+  <div class="areas-list">
+    <span class="area-tag">📍 Abilene</span>
+    <span class="area-tag">📍 Tuscola</span>
+    <span class="area-tag">📍 Tye</span>
+    <span class="area-tag">📍 Merkel</span>
+    <span class="area-tag">📍 Clyde</span>
+    <span class="area-tag">📍 Winters</span>
+    <span class="area-tag">📍 Sweetwater</span>
+    <span class="area-tag">📍 Stamford</span>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="section-label" style="color: var(--sky-light)">Get In Touch</div>
+  <h2>Ready to Get It Fixed?</h2>
+  <p>Call or text for a free estimate. We'll have someone out to you fast.</p>
+  <div class="cta-options">
+    <a href="tel:3255550200" class="cta-opt">
+      <div class="cta-opt-label">Call Us</div>
+      <div class="cta-opt-val">📞 (325) 555-0200</div>
+    </a>
+    <a href="sms:3255550200" class="cta-opt">
+      <div class="cta-opt-label">Text Us</div>
+      <div class="cta-opt-val">💬 (325) 555-0200</div>
+    </a>
+    <div class="cta-opt">
+      <div class="cta-opt-label">Hours</div>
+      <div class="cta-opt-val">🕗 7am – 8pm Daily</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 ProFlow Plumbing — Abilene, TX | Licensed Texas Plumber</span>
+  <span>Site by Jaidan Pena Web Design</span>
+</footer>
+
+</body>
+</html>
